@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t myapp .
+
+      - name: Run tests (if any)
+        run: |
+          if [ -f "pytest.ini" ] || ls tests/*.py 2>/dev/null; then
+            docker run myapp pytest
+          else
+            echo "No tests found, skipping."
+          fi
