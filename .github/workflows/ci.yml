@@ -8,7 +8,7 @@ env:
   PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
   REGION: ${{ secrets.GCP_REGION }}
   REPOSITORY: pipelinegen-repo
-  SERVICE_NAME: test-app
+  SERVICE_NAME: test_app
 
 jobs:
   build-deploy:
@@ -47,4 +47,3 @@ jobs:
             --region ${{ env.REGION }} \
             --platform managed \
             --allow-unauthenticated
-
